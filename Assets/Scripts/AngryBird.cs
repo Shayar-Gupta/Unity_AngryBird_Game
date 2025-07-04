@@ -6,6 +6,7 @@ public class AngryBird : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
     private CircleCollider2D _circleCollider;
+    private bool _hasBeenLaunched, _shouldFaceVelocityDirection;
 
     private void Awake()
     {
@@ -19,6 +20,10 @@ public class AngryBird : MonoBehaviour
         _circleCollider.enabled = false;
     }
 
+    private void FixedUpdate(){
+        if(_hasBeenLaunched && _shouldFaceVelocityDirection) transform.right = _rigidbody.velocity;
+    }
+
     public void LaunchBird(Vector2 direction, float force)
     {
         _rigidbody.isKinematic = false;
@@ -26,5 +31,12 @@ public class AngryBird : MonoBehaviour
 
         //apply the force
         _rigidbody.AddForce(direction * force, ForceMode2D.Impulse);
+
+        _hasBeenLaunched = true;
+        _shouldFaceVelocityDirection = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision){
+        _shouldFaceVelocityDirection = false;
     }
 }

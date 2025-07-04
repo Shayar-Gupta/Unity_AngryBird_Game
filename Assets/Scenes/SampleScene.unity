@@ -299,7 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 239254447}
   m_Layer: 0
-  m_Name: StripStartRight
+  m_Name: StripStartRIGHT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1024,7 +1024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1386192660}
   m_Layer: 0
-  m_Name: StripStartLeft
+  m_Name: StripStartLEFT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1081,8 +1081,10 @@ MonoBehaviour:
   _centerPosition: {fileID: 1263299550}
   _idlePosition: {fileID: 1097051218}
   _maxDistance: 3.5
+  _shotForce: 5
+  _timeBtweenBirdRespwans: 2
   _slingShotArea: {fileID: 51294239}
-  _angryBirdPrefab: {fileID: 8084880288830613750, guid: 295bf7cf61f52ba4eba2edcccf85bfbe, type: 3}
+  _angryBirdPrefab: {fileID: 524665248313916805, guid: 295bf7cf61f52ba4eba2edcccf85bfbe, type: 3}
   _angryBirdPositionOffest: 0.275
 --- !u!4 &1550253576
 Transform:
@@ -1137,6 +1139,51 @@ Transform:
   - {fileID: 1263299550}
   - {fileID: 1097051218}
   m_Father: {fileID: 1550253576}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1744220021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1744220023}
+  - component: {fileID: 1744220022}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1744220022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744220021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2d4ec577018224398587bbd472a2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxNumberOfShots: 3
+--- !u!4 &1744220023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744220021}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.234352, y: -1.0097948, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793536301
 GameObject:
@@ -1505,3 +1552,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 636457770}
   - {fileID: 1550253576}
+  - {fileID: 1744220023}
