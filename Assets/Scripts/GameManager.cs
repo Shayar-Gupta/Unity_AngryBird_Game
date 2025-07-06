@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _restartScreenObject;
     [SerializeField] private Image _nextLevelImg;
     [SerializeField] private SlingShotHandler _slingShotHandler;
+    [SerializeField] private TextMeshProUGUI _levelText;
+
 
     public void Awake()
     {
@@ -29,6 +33,9 @@ public class GameManager : MonoBehaviour
 
         _nextLevelImg.enabled = false;
         _restartScreenObject.SetActive(false);
+
+        int levelIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        _levelText.text = "" + levelIndex;
 
     }
 
