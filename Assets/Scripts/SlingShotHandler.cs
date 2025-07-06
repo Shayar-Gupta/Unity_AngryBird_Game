@@ -48,19 +48,19 @@ public class SlingShotHandler : MonoBehaviour
     private void Update()
     {
 
-        if (Mouse.current.leftButton.wasPressedThisFrame && _slingShotArea.IsWithinSlingShotArea())
+        if (InputManager.WasLeftMouseButtonPressed && _slingShotArea.IsWithinSlingShotArea())
         {
             _clickedWithinArea = true;
         }
 
-        if (Mouse.current.leftButton.isPressed && _clickedWithinArea && _birdOnSlingshot)
+        if (InputManager.IsLeftMousePressed && _clickedWithinArea && _birdOnSlingshot)
         {
             //Debug.Log("mouse was clicked");
             DrawSlingShot();
             positionAndRotateAngryBird();
         }
 
-        if (Mouse.current.leftButton.wasReleasedThisFrame && _birdOnSlingshot)
+        if (InputManager.WasLeftMouseButtonReleased && _birdOnSlingshot)
         {
             if(GameManager.instance.hasEnoughShots()){
                 _clickedWithinArea = false;
@@ -83,7 +83,7 @@ public class SlingShotHandler : MonoBehaviour
 
     private void DrawSlingShot()
     {
-        Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector3 touchPosition = Camera.main.ScreenToWorldPoint(InputManager.MousePosition);
         _slingShotLinesPosition = _centerPosition.position + Vector3.ClampMagnitude(touchPosition - _centerPosition.position, _maxDistance);
         SetLines(_slingShotLinesPosition);
 
