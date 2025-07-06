@@ -9,6 +9,8 @@ public class AngryBird : MonoBehaviour
     private bool _hasBeenLaunched, _shouldFaceVelocityDirection;
 
     [SerializeField] private AudioClip _hitClip;
+    [SerializeField] private float _destroyAngryBird = 5f;
+
     private AudioSource _audioSource;
 
     private void Awake()
@@ -24,8 +26,9 @@ public class AngryBird : MonoBehaviour
         _circleCollider.enabled = false;
     }
 
-    private void FixedUpdate(){
-        if(_hasBeenLaunched && _shouldFaceVelocityDirection) transform.right = _rigidbody.velocity;
+    private void FixedUpdate()
+    {
+        if (_hasBeenLaunched && _shouldFaceVelocityDirection) transform.right = _rigidbody.velocity;
     }
 
     public void LaunchBird(Vector2 direction, float force)
@@ -38,12 +41,22 @@ public class AngryBird : MonoBehaviour
 
         _hasBeenLaunched = true;
         _shouldFaceVelocityDirection = true;
+
+        // StartCoroutine(DelayedDestruction());
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _shouldFaceVelocityDirection = false;
         SoundManager.instance.PlayClip(_hitClip, _audioSource);
-        Destroy(this);
+        StartCoroutine(DelayedDestruction());
     }
+    
+    private IEnumerator DelayedDestruction()
+    {
+        yield return new WaitForSeconds(_destroyAngryBird);
+        Destroy(gameObject);
+    }
+
 }

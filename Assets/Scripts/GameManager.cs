@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < baddies.Length; i++) _baddies.Add(baddies[i]);
 
         _nextLevelImg.enabled = false;
+        _restartScreenObject.SetActive(false);
 
     }
 

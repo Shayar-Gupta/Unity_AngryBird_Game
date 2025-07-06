@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitClip: {fileID: 8300000, guid: c08115114c1e3a64b947d8a412f07f45, type: 3}
+  _destroyAngryBird: 5
 --- !u!212 &1930195159842753394
 SpriteRenderer:
   m_ObjectHideFlags: 0
