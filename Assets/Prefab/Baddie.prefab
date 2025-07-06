@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 3
   _damageThreshold: 0.2
+  _baddieDeathParticle: {fileID: 8161880040635758779, guid: b4286fe0284b574498c0a3688d900933, type: 3}
+  _deathClip: {fileID: 8300000, guid: caa77331909767e46b8547029b5a9957, type: 3}
 --- !u!212 &6241662109188915979
 SpriteRenderer:
   m_ObjectHideFlags: 0

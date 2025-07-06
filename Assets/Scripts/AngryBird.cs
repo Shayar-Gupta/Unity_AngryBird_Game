@@ -8,10 +8,14 @@ public class AngryBird : MonoBehaviour
     private CircleCollider2D _circleCollider;
     private bool _hasBeenLaunched, _shouldFaceVelocityDirection;
 
+    [SerializeField] private AudioClip _hitClip;
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _circleCollider = GetComponent<CircleCollider2D>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -36,7 +40,10 @@ public class AngryBird : MonoBehaviour
         _shouldFaceVelocityDirection = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision){
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         _shouldFaceVelocityDirection = false;
+        SoundManager.instance.PlayClip(_hitClip, _audioSource);
+        Destroy(this);
     }
 }

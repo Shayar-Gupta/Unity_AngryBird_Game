@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float _secondsToWaitBeforeDeathCheck = 3f;
     [SerializeField] private GameObject _restartScreenObject;
-
+    [SerializeField] private Image _nextLevelImg;
     [SerializeField] private SlingShotHandler _slingShotHandler;
 
     public void Awake()
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
         _iconHandler = FindObjectOfType<IconHandler>();
         Baddie[] baddies = FindObjectsOfType<Baddie>();
         for (int i = 0; i < baddies.Length; i++) _baddies.Add(baddies[i]);
+
+        _nextLevelImg.enabled = false;
 
     }
 
@@ -62,7 +66,8 @@ public class GameManager : MonoBehaviour
         CheckForAllDeadBaddies();
     }
 
-    private void CheckForAllDeadBaddies() {
+    private void CheckForAllDeadBaddies()
+    {
         if (_baddies.Count == 0) WinGame();
     }
 
@@ -72,10 +77,22 @@ public class GameManager : MonoBehaviour
     {
         _restartScreenObject.SetActive(true);
         _slingShotHandler.enabled = false;
+
+        int currSceneIdx = SceneManager.GetActiveScene().buildIndex;
+        int maxLevels = SceneManager.sceneCountInBuildSettings;
+
+        if (currSceneIdx + 1 < maxLevels) _nextLevelImg.enabled = true;
     }
 
-    public void RestartGame() {
+    public void RestartGame()
+    {
+        DOTween.Clear(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     #endregion
