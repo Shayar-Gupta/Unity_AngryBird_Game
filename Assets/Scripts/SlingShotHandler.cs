@@ -21,7 +21,7 @@ public class SlingShotHandler : MonoBehaviour
 
     [Header("SlingShot Stats")]
     [SerializeField] private float _maxDistance = 3.5f;
-    [SerializeField] private float _shotForce = 5f;
+    [SerializeField] public float _shotForce = 5f;
     [SerializeField] private float _timeBtweenBirdRespwans = 2f;
     [SerializeField] private float _elasticDivider = 1.2f;
     [SerializeField] private float _maxAnimationTime = 1f;
@@ -42,6 +42,8 @@ public class SlingShotHandler : MonoBehaviour
     [SerializeField] private AudioClip[] _elasticReleasedClip;
 
 
+    public static SlingShotHandler instance;
+
     private Vector2 _slingShotLinesPosition;
     private Vector2 _direction;
     private Vector2 _directionNormalized;
@@ -55,6 +57,11 @@ public class SlingShotHandler : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null) instance = this;
+
+         // Load saved velocity
+        _shotForce = PlayerPrefs.GetFloat("ShotForce", 5f);
+
 
         _audioSource = GetComponent<AudioSource>();
         _leftLineRenderer.enabled = false;
